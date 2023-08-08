@@ -2,18 +2,21 @@
   position: relative;
   top: 0;
   left: 0;
-  width: auto;
+  z-index: 1;
 }
 
 .sidebar .sidebarContent {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  position: fixed;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
   border-right: 1px solid #a3a3a354;
   background-color: #fff;
-  z-index: 1;
   animation: sidebarIn 0.2s ease-in-out;
+  width: 320px;
 }
 
 @keyframes sidebarIn {
@@ -26,7 +29,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
 }
 
 .sidebar .sidebarContent .logoAndToggle .logo {
@@ -41,10 +43,14 @@
 
 .sidebar .showSidebar.false {
   position: fixed;
-  top: 20px;
+  top: 28px;
   left: 20px;
 }
 
 .sidebar .showSidebar.true {
   padding-right: 20px;
+}
+
+.sidebar .showSidebar:hover {
+  cursor: pointer;
 }

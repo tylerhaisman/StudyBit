@@ -3,14 +3,16 @@ import Image from "next/image";
 import Logo from "../../../public/assets/icons/logo.svg";
 import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Hamburger from "../../../public/assets/icons/hamburger.svg";
-import { usePathname } from "next/navigation";
+import SidebarLeft from "../../../public/assets/icons/sidebarLeft.svg";
+import SidebarRight from "../../../public/assets/icons/sidebarRight.svg";
+import { usePathname, useRouter } from "next/navigation";
 
 const Sidebar = () => {
   const path = usePathname();
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const sidebarValue = localStorage.getItem("toggleSidebar");
   const [width, setWidth] = useState(window.innerWidth);
+  const router = useRouter();
 
   const updateDimensions = () => {
     setWidth(window.innerWidth);
@@ -29,7 +31,9 @@ const Sidebar = () => {
   return (
     <div
       className="sidebar"
-      style={{ position: width >= 900 ? "relative" : "fixed" }}
+      style={{
+        minWidth: width >= 900 && toggleSidebar ? "320px" : "0",
+      }}
     >
       {path != "/" && !toggleSidebar && (
         <div
@@ -37,17 +41,17 @@ const Sidebar = () => {
           onClick={() => setToggleSidebar(!toggleSidebar)}
         >
           <Image
-            src={Hamburger}
+            src={SidebarRight}
             alt="Menu toggle"
-            width={35}
-            height={35}
+            width={25}
+            height={25}
           ></Image>
         </div>
       )}
       {toggleSidebar && (
-        <div className="sidebarContent large">
+        <div className="sidebarContent">
           <div className="logoAndToggle">
-            <div className="logo">
+            <div className="logo" onClick={() => router.push("/console")}>
               <Image
                 src={Logo}
                 alt="StudyBit logo"
@@ -61,10 +65,10 @@ const Sidebar = () => {
               onClick={() => setToggleSidebar(!toggleSidebar)}
             >
               <Image
-                src={Hamburger}
+                src={SidebarLeft}
                 alt="Menu toggle"
-                width={35}
-                height={35}
+                width={25}
+                height={25}
               ></Image>
             </div>
           </div>

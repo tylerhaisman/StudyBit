@@ -10,12 +10,23 @@
   height: 70vh;
 }
 
+.auth .authType .content h1 {
+  margin-bottom: 10px;
+}
+
 .auth .authType .content form {
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
   text-align: center;
+  width: auto;
+}
+
+@media (min-width: 899px) {
+  .auth .authType .content form {
+    width: 400px;
+  }
 }
 
 .auth .authType .content form button {
@@ -29,6 +40,16 @@
   border: 1px solid #a3a3a354;
   padding: 10px;
   padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+}
+
+.auth .authType .content form select {
+  flex: 1;
+  font-size: 18px;
+  font-family: p;
+  border: 1px solid #a3a3a354;
+  padding: 10px;
   padding-right: 15px;
   border-radius: 10px;
 }

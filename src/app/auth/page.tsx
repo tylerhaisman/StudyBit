@@ -82,6 +82,7 @@ const Auth = () => {
   const registerPassword = useRef("");
   const registerFirstName = useRef("");
   const registerLastName = useRef("");
+  const [selectedSchool, setSelectedSchool] = useState("Choose One");
 
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
@@ -89,7 +90,8 @@ const Auth = () => {
       registerEmail.current.length > 0 &&
       registerPassword.current.length > 0 &&
       registerFirstName.current.length > 0 &&
-      registerLastName.current.length > 0
+      registerLastName.current.length > 0 &&
+      selectedSchool !== "Choose One"
     ) {
       const response = await addUser();
       if (response.message == "User already exists! Please sign in.") {
@@ -142,6 +144,7 @@ const Auth = () => {
           password: registerPassword.current,
           firstName: registerFirstName.current,
           lastName: registerLastName.current,
+          school: selectedSchool,
         }),
       });
       const data = await response.json();
@@ -214,6 +217,20 @@ const Auth = () => {
                 placeholder="Password"
                 onChange={(e) => (registerPassword.current = e.target.value)}
               />
+              <select
+                name=""
+                id=""
+                value={selectedSchool}
+                onChange={(e) => setSelectedSchool(e.target.value)}
+                style={{
+                  color: selectedSchool == "Choose One" ? "#777777" : "#111111",
+                }}
+              >
+                <option value="Choose One">Choose One</option>
+                <option value="University of Florida">
+                  University of Florida
+                </option>
+              </select>
               <button>
                 Register <Image src={Arrow} alt="Arrow up right"></Image>
               </button>

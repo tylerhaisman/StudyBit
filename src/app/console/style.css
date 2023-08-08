@@ -3,54 +3,91 @@
   min-height: 100vh;
 }
 
-.console .consolecontent {
+.console .page {
   display: flex;
 }
 
-.console .page {
+.console .data {
   padding: 30px;
   padding-top: 100px;
   width: 100%;
 }
 
-.console .page .container {
+.console .data .container {
   margin-top: 20px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.console .page .container .item {
+.console .data .container .item {
   background-color: #ffffff;
   border: 1px solid #a3a3a354;
   padding: 20px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   flex: 1;
 }
 
-.console .page .container .item .classes {
-  list-style: none;
+.console .data .container .item h2 {
+  margin-bottom: 20px;
 }
 
-.console .page .container .item .classes li {
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.console .data .container .item button {
+  margin-top: 20px;
+}
+
+.console .data .container .item.profile {
+}
+
+.console .data .container .item.profile .profileName {
+  font-family: h1;
+  margin-bottom: 0;
+}
+
+.console .data .container .item.profile .profilePicture {
+  margin-bottom: 10px;
+  background-color: #339c3a26;
+  padding: 20px;
   border-radius: 10px;
 }
 
-.console .page .container .item .classes li:hover {
+.console .data .container .item .notification {
+  padding: 20px;
+  background-color: #339c3a26;
+  border-radius: 10px;
+}
+
+.console .data .container .item .notification .notificaitonTitle {
+  font-family: h1;
+}
+
+.console .data .container .item .classes {
+  list-style: none;
+}
+
+.console .data .container .item .classes li {
+  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.console .data .container .item .classes li .classTitle {
+  font-family: h1;
+}
+
+.console .data .container .item .classes li:hover {
   background-color: #a3a3a32c;
   cursor: pointer;
 }
 
-.console .page .container .item .classes li img {
+.console .data .container .item .classes li img {
   width: 14px;
   height: 14px;
   rotate: 45deg;

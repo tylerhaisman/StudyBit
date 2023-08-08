@@ -51,7 +51,8 @@ export async function addUser(
   email: string,
   password: string,
   firstName: string,
-  lastName: string
+  lastName: string,
+  school: string
 ) {
   const db = Database.getInstance();
   const client = db.getPool();
@@ -71,6 +72,7 @@ export async function addUser(
       password: encryptedPassword,
       firstName,
       lastName,
+      school,
       isAdmin: false,
     });
 
@@ -80,11 +82,12 @@ export async function addUser(
       newUser.password,
       newUser.firstName,
       newUser.lastName,
+      newUser.school,
       newUser.isAdmin,
     ];
 
     await client.query(
-      "INSERT INTO users (id, email, password, firstName, lastName, isAdmin) VALUES ($1, $2, $3, $4, $5, $6)",
+      "INSERT INTO users (id, email, password, firstName, lastName, school, isAdmin) VALUES ($1, $2, $3, $4, $5, $6, $7)",
       values
     );
     return "Success";

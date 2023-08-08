@@ -7,7 +7,7 @@ import Image from "next/image";
 import Logo from "../../../public/assets/icons/logo.svg";
 import Arrow from "../../../public/assets/icons/arrow.svg";
 import { useRouter, usePathname } from "next/navigation";
-import Hamburger from "../../../public/assets/icons/hamburger.svg";
+import Hamburger from "../../../public/assets/icons/sidebarLeft.svg";
 import Profile from "../../../public/assets/icons/profile.svg";
 
 const Nav = () => {
@@ -26,8 +26,7 @@ const Nav = () => {
     <div
       className="nav"
       style={{
-        background:
-          path === "/" || path === "/auth" ? "transparent" : "#ffffff99",
+        background: path === "/" || path === "/auth" ? "transparent" : "#fff",
         borderBottom:
           path === "/" || path === "/auth" ? "0" : "1px solid #a3a3a354",
         position: path === "/" || path === "/auth" ? "relative" : "fixed",

@@ -10,9 +10,9 @@ import Loader from "@/components/loader/Loader";
 import Image from "next/image";
 import Arrow from "../../../public/assets/icons/arrow.svg";
 import Arrow2 from "../../../public/assets/icons/arrow2.svg";
+import Profile from "../../../public/assets/icons/profile.svg";
 
 const Console = () => {
-  const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [school, setSchool] = useState("");
@@ -71,6 +71,7 @@ const Console = () => {
   };
 
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const fetch = async () => {
@@ -97,9 +98,9 @@ const Console = () => {
   return (
     <div className="console">
       <Nav></Nav>
-      <div className="consolecontent">
+      <div className="page">
         <Sidebar></Sidebar>
-        <div className="page">
+        <div className="data">
           <p>Hello {firstName},</p>
           <h2>Welcome back! 👋</h2>
           <div className="container">
@@ -107,8 +108,21 @@ const Console = () => {
               <h2>My Classes</h2>
               <ul className="classes">
                 {allClasses.map((item, index) => (
-                  <li key={index}>
-                    {item.title}
+                  <li
+                    key={index}
+                    onClick={() =>
+                      router.push(
+                        "/school/" +
+                          encodeURIComponent(item.school) +
+                          "/class/" +
+                          encodeURIComponent(item.title)
+                      )
+                    }
+                  >
+                    <div className="classInfo">
+                      <p className="classTitle">{item.title}</p>
+                      <p>{item.school}</p>
+                    </div>
                     <Image src={Arrow2} alt="Arrow up right"></Image>
                   </li>
                 ))}
@@ -117,11 +131,17 @@ const Console = () => {
                 Add Classes <Image src={Arrow} alt="Arrow up right"></Image>
               </button>
             </div>
-            <div className="item">
-              <h2>Profile</h2>
-              <p>
+            <div className="item profile">
+              <Image
+                src={Profile}
+                alt="Profile picture"
+                className="profilePicture"
+                width={40}
+                height={40}
+              ></Image>
+              <h2 className="profileName">
                 {firstName} {lastName}
-              </p>
+              </h2>
               <p>{school}</p>
               <button>
                 Manage Profile <Image src={Arrow} alt="Arrow up right"></Image>
@@ -129,6 +149,10 @@ const Console = () => {
             </div>
             <div className="item">
               <h2>Notifications</h2>
+              <div className="notification">
+                <p className="notificaitonTitle">🔔 Introducing Live Notes!</p>
+                <p>Live Notes are here and ready to use this semester!</p>
+              </div>
             </div>
           </div>
           <div className="container">

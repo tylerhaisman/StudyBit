@@ -4,6 +4,7 @@ class User {
   password: string;
   firstName: string;
   lastName: string;
+  school: string;
   isAdmin: boolean;
   constructor({
     id,
@@ -11,6 +12,7 @@ class User {
     password,
     firstName,
     lastName,
+    school,
     isAdmin,
   }: {
     id: string;
@@ -18,6 +20,7 @@ class User {
     password: string;
     firstName: string;
     lastName: string;
+    school: string;
     isAdmin: boolean;
   }) {
     this.id = id;
@@ -25,6 +28,7 @@ class User {
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.school = school;
     this.isAdmin = isAdmin;
   }
 }

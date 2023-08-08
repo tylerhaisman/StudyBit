@@ -1,0 +1,14 @@
+.classPage {
+  background: radial-gradient(at 0 0, #339c3a26, #ffffff);
+  min-height: 100vh;
+}
+
+.classPage .page {
+  display: flex;
+}
+
+.classPage .page .data {
+  padding: 30px;
+  padding-top: 100px;
+  width: 100%;
+}
