@@ -1,0 +1,52 @@
+.home .cover {
+  background: radial-gradient(at 0 0, #339c3a26, #ffffff);
+  padding-bottom: 50px;
+}
+
+.home .cover .side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+
+.home .cover .side.top {
+  padding-top: 100px;
+}
+
+.home .cover .side img {
+  max-width: 500px;
+  height: auto;
+}
+
+.home .features {
+  background-color: #339c3a;
+  color: #fff;
+  margin-top: -50px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.home .features .container {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 40px;
+  animation: fadeIn 0.5s;
+}
+
+.home .features .container .item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  padding: 20px;
+}

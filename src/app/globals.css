@@ -1,0 +1,87 @@
+@font-face {
+  font-family: h1;
+  src: url(../../public/assets/fonts/Nunito-Bold.ttf);
+}
+
+@font-face {
+  font-family: p;
+  src: url(../../public/assets/fonts/Nunito-Regular.ttf);
+}
+
+h1 {
+  font-size: 50px;
+  font-family: h1;
+}
+
+h2 {
+  font-size: 30px;
+  font-family: h1;
+}
+
+p {
+  font-size: 18px;
+  font-family: p;
+}
+
+a {
+  color: #111111;
+  font-family: p;
+  font-size: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+  color: #111111;
+  font-family: p;
+}
+
+.content {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: auto;
+  max-width: 1400px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  border: 0;
+  background-color: #339c3a;
+  color: #fff;
+  font-family: p;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+
+button img {
+  rotate: 45deg;
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
