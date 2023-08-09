@@ -4,9 +4,11 @@ import "./style.css";
 import Nav from "@/components/nav/Nav";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
 import Loader from "@/components/loader/Loader";
+import ReactQuill from "react-quill";
+import "quill/dist/quill.snow.css";
 
 const LiveNote = () => {
   const path = usePathname();
@@ -55,6 +57,12 @@ const LiveNote = () => {
     }
   };
 
+  const [editorContent, setEditorContent] = useState("");
+
+  const handleEditorChange = (content: string) => {
+    setEditorContent(content);
+  };
+
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -98,7 +106,13 @@ const LiveNote = () => {
           </div>
           <h2>{className}</h2>
           <p>{currentClass?.code}</p>
-          <div className="wordProcessor"></div>
+          <div className="wordProcessor">
+            <ReactQuill
+              theme="snow"
+              value={editorContent}
+              onChange={handleEditorChange}
+            />
+          </div>
         </div>
       </div>
     </div>
