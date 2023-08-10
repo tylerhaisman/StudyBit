@@ -5,6 +5,8 @@ import {
   findUserByEmail,
   getAllClasses,
   addClass,
+  updateNote,
+  getNote,
 } from "./query";
 
 export async function POST(req: Request) {
@@ -64,11 +66,30 @@ export async function POST(req: Request) {
     const response = await addClass(
       data.className,
       data.classCode,
-      data.school
+      data.school,
+      data.roomName
     );
     if (response == null) {
       return NextResponse.json(
         { message: "Error adding class" },
+        { status: 400 }
+      );
+    }
+    return NextResponse.json({ message: response }, { status: 200 });
+  } else if (data.action === "updateNote") {
+    const response = await updateNote(data.roomName, data.content, data.userId);
+    if (response == null) {
+      return NextResponse.json(
+        { message: "Error updating note" },
+        { status: 400 }
+      );
+    }
+    return NextResponse.json({ message: response }, { status: 200 });
+  } else if (data.action === "getNote") {
+    const response = await getNote(data.roomName);
+    if (response == null) {
+      return NextResponse.json(
+        { message: "Error getting note" },
         { status: 400 }
       );
     }

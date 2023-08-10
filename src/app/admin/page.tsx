@@ -18,6 +18,12 @@ const Admin = () => {
   const addClass = async (event: FormEvent) => {
     event.preventDefault();
     if (className != "" && classCode != "" && school != "") {
+      const getRoomName =
+        "/school/" +
+        encodeURIComponent(school) +
+        "/class/" +
+        encodeURIComponent(className);
+      const roomName = getRoomName.substring(8);
       try {
         const response = await fetch("/api/database", {
           method: "POST",
@@ -29,6 +35,7 @@ const Admin = () => {
             className,
             classCode,
             school,
+            roomName,
           }),
         });
         const data = await response.json();

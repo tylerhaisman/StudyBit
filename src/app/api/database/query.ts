@@ -1,3 +1,4 @@
+import { json } from "stream/consumers";
 import Database from "./connection";
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
@@ -133,17 +134,73 @@ export async function getAllClasses() {
 export async function addClass(
   className: string,
   classCode: string,
-  school: string
+  school: string,
+  roomName: string
 ) {
   const db = Database.getInstance();
   const client = db.getPool();
   try {
     await client.query(
-      `INSERT INTO classes (title, code, documents, school) VALUES ($1, $2, $3, $4)`,
-      [className, classCode, "[]", school]
+      `INSERT INTO classes (title, code, documents, school, roomname, livenote) VALUES ($1, $2, $3, $4, $5, $6)`,
+      [className, classCode, "[]", school, roomName, "[]"]
     );
     return "Success";
   } catch (error) {
+    return error;
+  }
+}
+
+export async function updateNote(
+  roomName: string,
+  content: string,
+  userID: string
+) {
+  const db = Database.getInstance();
+  const client = db.getPool();
+  try {
+    let existingLiveNoteContent;
+    try {
+      const getLiveNote = await client.query(
+        `SELECT livenote FROM classes WHERE roomname = $1`,
+        [roomName]
+      );
+      existingLiveNoteContent = getLiveNote.rows[0].livenote;
+    } catch (error) {
+      console.error("Error getting livenote: " + error);
+      return error;
+    }
+
+    const jsonString = JSON.stringify({
+      content,
+    });
+    await client.query(`UPDATE classes SET livenote = $1 WHERE roomname = $2`, [
+      jsonString,
+      roomName,
+    ]);
+    return "Success";
+  } catch (error) {
+    console.error("Error setting livenote: " + error);
+    return error;
+  }
+}
+
+export async function getNote(roomName: string) {
+  const db = Database.getInstance();
+  const client = db.getPool();
+  let existingLiveNoteContent;
+  try {
+    const getLiveNote = await client.query(
+      `SELECT livenote FROM classes WHERE roomname = $1`,
+      [roomName]
+    );
+    if (getLiveNote) {
+      existingLiveNoteContent = getLiveNote.rows[0].livenote;
+      return existingLiveNoteContent;
+    } else {
+      return "";
+    }
+  } catch (error) {
+    console.error("Error getting livenote: " + error);
     return error;
   }
 }

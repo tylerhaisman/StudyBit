@@ -12,3 +12,34 @@
   padding-top: 100px;
   width: 100%;
 }
+
+.classPage .data .container {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.classPage .data .container .item {
+  background-color: #ffffff;
+  border: 1px solid #a3a3a354;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.classPage .data .container .item h2 {
+  margin-bottom: 20px;
+}
+
+.classPage .data .container .item button {
+  margin-top: 20px;
+}
+
+.classPage .page .data .container .item .special .sparkles {
+  rotate: 0deg;
+  width: 20px;
+  height: 20px;
+}
